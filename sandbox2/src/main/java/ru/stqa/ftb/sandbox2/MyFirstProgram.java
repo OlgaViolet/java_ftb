@@ -1,4 +1,4 @@
-package ru.stqa.sandbox;
+package ru.stqa.ftb.sandbox2;
 
 public class MyFirstProgram {
     public static void main(String[] args) {
@@ -17,5 +17,4 @@ public class MyFirstProgram {
         System.out.println("Hello, " + somebody + "!");
 
     }
-
 }
