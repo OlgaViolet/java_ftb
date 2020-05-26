@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ru.stqa.ftb.phphtravels.LoginTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-05-26T16:09:08" hostname="OlgaY" time="11.247">
+  <properties/>
+  <testcase name="loginTest" classname="ru.stqa.ftb.phphtravels.LoginTest" time="11.247"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[Starting ChromeDriver 80.0.3987.106 (f68069574609230cf9b635cd784cfb1bf81bb53a-refs/branch-heads/3987@{#882}) on port 20069
+Only local connections are allowed.
+Please protect ports used by ChromeDriver and related test frameworks to prevent access by malicious code.
+[1590509349.901][WARNING]: This version of ChromeDriver has not been tested with Chrome version 81.
+[1590509351.905][WARNING]: Timed out connecting to Chrome, retrying...
+May 26, 2020 12:09:13 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: W3C
+[1590509355.999][WARNING]: Timed out connecting to Chrome, retrying...
+[1590509358.682][SEVERE]: Timed out receiving message from renderer: 0.100
+]]></system-err>
+</testsuite>
