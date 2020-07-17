@@ -2,9 +2,7 @@ package ru.stqa.pft.addressbook;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.util.concurrent.TimeUnit;
 
@@ -16,30 +14,12 @@ public class GroupCreationTests {
   private boolean acceptNextAlert = true;
   private StringBuffer verificationErrors = new StringBuffer();
 
-  @BeforeClass(alwaysRun = true)
+  @BeforeMethod
   public void setUp() throws Exception {
     driver = new FirefoxDriver();
     //baseUrl = "http://localhost:81/addressbook";
     driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-  }
-
-  @Test
-  public void testUntitledTestCase() throws Exception {
-   // driver.get("https://docs.katalon.com/katalon-studio/docs/katalon-studio-activation-since-70.html");
-   // driver.findElement(By.linkText("Katalon Studio")).click();
-    //driver.findElement(By.linkText("Katalon TestOps")).click();
-    //driver.findElement(By.linkText("Working with Runtime Engine")).click();
-    // ERROR: Caught exception [ERROR: Unsupported command [selectFrame | index=0 | ]]
-    //driver.findElement(By.linkText("Continue Discussion")).click();
-    // ERROR: Caught exception [ERROR: Unsupported command [selectWindow | win_ser_1 | ]]
-    //driver.close();
-    // ERROR: Caught exception [ERROR: Unsupported command [selectWindow | win_ser_local | ]]
     driver.get("http://localhost:81/addressbook/group.php");
-    driver.findElement(By.name("user")).click();
-    driver.findElement(By.name("user")).clear();
-    driver.findElement(By.name("user")).sendKeys("admin");
-    driver.findElement(By.id("LoginForm")).click();
-    driver.findElement(By.name("pass")).click();
     driver.findElement(By.name("user")).click();
     driver.findElement(By.name("user")).clear();
     driver.findElement(By.name("user")).sendKeys("admin");
@@ -47,6 +27,11 @@ public class GroupCreationTests {
     driver.findElement(By.name("pass")).clear();
     driver.findElement(By.name("pass")).sendKeys("secret");
     driver.findElement(By.xpath("//input[@value='Login']")).click();
+  }
+
+  @Test
+  public void testGroupCreation()  {
+
     driver.findElement(By.linkText("groups")).click();
     driver.findElement(By.name("new")).click();
     driver.findElement(By.name("group_name")).click();
@@ -62,7 +47,7 @@ public class GroupCreationTests {
     driver.findElement(By.linkText("group page")).click();
   }
 
-  @AfterClass(alwaysRun = true)
+  @AfterMethod
   public void tearDown() throws Exception {
     driver.quit();
     String verificationErrorString = verificationErrors.toString();
