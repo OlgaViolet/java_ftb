@@ -17,34 +17,58 @@ public class GroupCreationTests {
   @BeforeMethod
   public void setUp() throws Exception {
     driver = new FirefoxDriver();
-    //baseUrl = "http://localhost:81/addressbook";
     driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     driver.get("http://localhost:81/addressbook/group.php");
-    driver.findElement(By.name("user")).click();
-    driver.findElement(By.name("user")).clear();
-    driver.findElement(By.name("user")).sendKeys("admin");
-    driver.findElement(By.name("pass")).click();
-    driver.findElement(By.name("pass")).clear();
-    driver.findElement(By.name("pass")).sendKeys("secret");
-    driver.findElement(By.xpath("//input[@value='Login']")).click();
+    //login
+    login("user", "pass", By.xpath("//input[@value='Login']"), "admin", "secret");
+  }
+
+  private void login(String user, String pass, By xpath, String username, String password) {
+    driver.findElement(By.name(user)).click();
+    driver.findElement(By.name(user)).clear();
+    driver.findElement(By.name(user)).sendKeys(username);
+    driver.findElement(By.name(pass)).click();
+    driver.findElement(By.name(pass)).clear();
+    driver.findElement(By.name(pass)).sendKeys(password);
+    driver.findElement(xpath).click();
   }
 
   @Test
   public void testGroupCreation()  {
 
-    driver.findElement(By.linkText("groups")).click();
-    driver.findElement(By.name("new")).click();
+    gotoGroupPage("groups");
+    initGroupCreation("new");
+    fillGroupForm(new GroupData("test2", "test3", "test4"));
+    submitGroupCreation("submit");
+    returnToGroupPage("group page");
+  }
+
+  private void returnToGroupPage(String s) {
+    driver.findElement(By.linkText(s)).click();
+  }
+
+  private void submitGroupCreation(String submit) {
+    driver.findElement(By.name(submit)).click();
+  }
+
+  private void fillGroupForm(GroupData groupData) {
     driver.findElement(By.name("group_name")).click();
     driver.findElement(By.name("group_name")).clear();
-    driver.findElement(By.name("group_name")).sendKeys("test2");
+    driver.findElement(By.name("group_name")).sendKeys(groupData.getName());
     driver.findElement(By.name("group_header")).click();
     driver.findElement(By.name("group_header")).clear();
-    driver.findElement(By.name("group_header")).sendKeys("test3");
+    driver.findElement(By.name("group_header")).sendKeys(groupData.getHeader());
     driver.findElement(By.name("group_footer")).click();
     driver.findElement(By.name("group_footer")).clear();
-    driver.findElement(By.name("group_footer")).sendKeys("test4");
-    driver.findElement(By.name("submit")).click();
-    driver.findElement(By.linkText("group page")).click();
+    driver.findElement(By.name("group_footer")).sendKeys(groupData.getFooter());
+  }
+
+  private void initGroupCreation(String s) {
+    driver.findElement(By.name(s)).click();
+  }
+
+  private void gotoGroupPage(String groups) {
+    driver.findElement(By.linkText(groups)).click();
   }
 
   @AfterMethod
